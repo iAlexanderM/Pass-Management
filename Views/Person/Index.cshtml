@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PassManagement.Models.Person>
+
+<h2>Список анкет</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Дата рождения</th>
+            <th>Телефон</th>
+            <th>Тип документа</th>
+            <th>Номер документа</th>
+            <th>Дата выдачи</th>
+            <th>Кем выдан</th>
+            <th>Адрес</th>
+            <th>Продукт</th>
+            <th>Фото</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.LastName</td>
+                <td>@item.FirstName</td>
+                <td>@item.Patronymic</td>
+                <td>@item.Birthdate.ToShortDateString()</td>
+                <td>@item.NumberPhone</td>
+                <td>@item.DocumentType</td>
+                <td>@item.NumberDocument</td>
+                <td>@item.DateOfIssue.ToShortDateString()</td>
+                <td>@item.WhoIssuedDocument</td>
+                <td>@item.Address</td>
+                <td>@item.Product</td>
+                <td>
+                    <img src="@Url.Content(item.PhotoPath)" alt="Фото" width="100" />
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Детали</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

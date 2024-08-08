@@ -1,0 +1,16 @@
+﻿@model dynamic
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+</head>
+<body>
+    <h1>Добро пожаловать на главную страницу!</h1>
+    <p><a href="/Person/Create">Добавить нового человека</a></p>
+    <!-- Ссылка на список анкет -->
+    <a href="@Url.Action("Index", "Person")">Перейти к списку анкет</a>
+</body>
+</html>
