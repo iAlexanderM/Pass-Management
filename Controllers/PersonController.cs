@@ -37,55 +37,51 @@ namespace PassManagement.Controllers
                 return View(personDto);
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
+                // Сохранение фото
+                var photoFileName = Guid.NewGuid().ToString() + Path.GetExtension(personDto.Photo.FileName);
+                var photoPath = Path.Combine("wwwroot", "images", photoFileName);
+
+                _logger.LogInformation($"Сохранение файла в {photoPath}");
+
+                using (var stream = new FileStream(photoPath, FileMode.Create))
                 {
-                    // Сохранение фото
-                    var photoPath = Path.Combine("wwwroot/images", Guid.NewGuid().ToString() + Path.GetExtension(personDto.Photo.FileName));
-
-                    _logger.LogInformation($"Сохранение файла в {photoPath}");
-
-                    using (var stream = new FileStream(photoPath, FileMode.Create))
-                    {
-                        await personDto.Photo.CopyToAsync(stream);
-                    }
-
-                    personDto.PhotoPath = Path.Combine("/images/", Path.GetFileName(photoPath));
-
-                    // Создание и сохранение объекта Person
-                    var person = new Person
-                    {
-                        LastName = personDto.LastName,
-                        FirstName = personDto.FirstName,
-                        Patronymic = personDto.Patronymic,
-                        Birthdate = personDto.Birthdate,
-                        NumberPhone = personDto.NumberPhone,
-                        DocumentType = personDto.DocumentType,
-                        NumberDocument = personDto.NumberDocument,
-                        DateOfIssue = personDto.DateOfIssue,
-                        WhoIssuedDocument = personDto.WhoIssuedDocument,
-                        Address = personDto.Address,
-                        Product = personDto.Product,
-                        PhotoPath = personDto.PhotoPath
-                    };
-
-                    _context.Persons.Add(person);
-                    _logger.LogInformation("Анкета добавлена в контекст базы данных");
-                    await _context.SaveChangesAsync();
-                    _logger.LogInformation("Изменения сохранены в базе данных");
-
-                    return RedirectToAction("Index", "Person");
+                    await personDto.Photo.CopyToAsync(stream);
                 }
-                catch (Exception ex)
+
+                personDto.PhotoPath = Path.Combine("/images", photoFileName).Replace("\\", "/");
+
+                // Создание и сохранение объекта Person
+                var person = new Person
                 {
-                    // Логирование ошибок
-                    _logger.LogError(ex, "Ошибка при сохранении анкеты.");
-                    ModelState.AddModelError("", "Произошла ошибка при сохранении данных. Попробуйте снова.");
-                }
+                    LastName = personDto.LastName,
+                    FirstName = personDto.FirstName,
+                    Patronymic = personDto.Patronymic,
+                    Birthdate = personDto.Birthdate,
+                    NumberPhone = personDto.NumberPhone,
+                    DocumentType = personDto.DocumentType,
+                    NumberDocument = personDto.NumberDocument,
+                    DateOfIssue = personDto.DateOfIssue,
+                    WhoIssuedDocument = personDto.WhoIssuedDocument,
+                    Address = personDto.Address,
+                    Product = personDto.Product,
+                    PhotoPath = personDto.PhotoPath
+                };
+
+                _context.Persons.Add(person);
+                _logger.LogInformation("Анкета добавлена в контекст базы данных");
+                await _context.SaveChangesAsync();
+                _logger.LogInformation("Изменения сохранены в базе данных");
+
+                return RedirectToAction("Index", "Person");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ошибка при сохранении анкеты.");
+                ModelState.AddModelError("", "Произошла ошибка при сохранении данных. Попробуйте снова.");
             }
 
-            // Логирование ошибок валидации
             foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
             {
                 _logger.LogWarning(error.ErrorMessage);
@@ -122,6 +118,21 @@ namespace PassManagement.Controllers
             };
 
             return View(personDto);
+        }
+
+        // GET: Person/Delete
+        [HttpPost]
+        public async Task<IActionResult> DeletePerson(int id)
+        {
+            var person = await _context.Persons.FindAsync(id);
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            _context.Persons.Remove(person);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Person/Index

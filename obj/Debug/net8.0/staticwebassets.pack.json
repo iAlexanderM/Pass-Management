@@ -13,6 +13,18 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\images\\751b94c7-0519-48b3-8cb6-4b762b4662d2.jpg",
+      "PackagePath": "staticwebassets\\images\\751b94c7-0519-48b3-8cb6-4b762b4662d2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\images\\bd114cbd-6eae-4627-bbee-283553fa2b7e.jpg",
+      "PackagePath": "staticwebassets\\images\\bd114cbd-6eae-4627-bbee-283553fa2b7e.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\images\\ed85b852-faf6-44ad-9b8f-99be6bca8eb9.jpg",
+      "PackagePath": "staticwebassets\\images\\ed85b852-faf6-44ad-9b8f-99be6bca8eb9.jpg"
+    },
+    {
       "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

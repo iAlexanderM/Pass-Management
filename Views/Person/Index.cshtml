@@ -40,6 +40,9 @@
                 </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Детали</a>
+                    <form asp-action="DeletePerson" asp-route-id="@item.Id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Вы уверены, что хотите удалить эту анкету?');">Удалить</button>
+                    </form>
                 </td>
             </tr>
         }
