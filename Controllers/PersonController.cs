@@ -12,10 +12,12 @@ namespace PassManagement.Controllers
     public class PersonController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ILogger<PersonController> _logger;
 
-        public PersonController(ApplicationDbContext context)
+        public PersonController(ApplicationDbContext context, ILogger<PersonController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Person/Create
@@ -42,12 +44,14 @@ namespace PassManagement.Controllers
                     // Сохранение фото
                     var photoPath = Path.Combine("wwwroot/images", Guid.NewGuid().ToString() + Path.GetExtension(personDto.Photo.FileName));
 
+                    _logger.LogInformation($"Сохранение файла в {photoPath}");
+
                     using (var stream = new FileStream(photoPath, FileMode.Create))
                     {
                         await personDto.Photo.CopyToAsync(stream);
                     }
 
-                    personDto.PhotoPath = photoPath;
+                    personDto.PhotoPath = Path.Combine("/images/", Path.GetFileName(photoPath));
 
                     // Создание и сохранение объекта Person
                     var person = new Person
@@ -67,16 +71,16 @@ namespace PassManagement.Controllers
                     };
 
                     _context.Persons.Add(person);
-                    Console.WriteLine("Анкета добавлена в контекст базы данных");
+                    _logger.LogInformation("Анкета добавлена в контекст базы данных");
                     await _context.SaveChangesAsync();
-                    Console.WriteLine("Изменения сохранены в базе данных");
+                    _logger.LogInformation("Изменения сохранены в базе данных");
 
                     return RedirectToAction("Index", "Person");
                 }
                 catch (Exception ex)
                 {
                     // Логирование ошибок
-                    Console.WriteLine($"Ошибка при сохранении анкеты: {ex.Message}");
+                    _logger.LogError(ex, "Ошибка при сохранении анкеты.");
                     ModelState.AddModelError("", "Произошла ошибка при сохранении данных. Попробуйте снова.");
                 }
             }
@@ -84,7 +88,7 @@ namespace PassManagement.Controllers
             // Логирование ошибок валидации
             foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
             {
-                Console.WriteLine(error.ErrorMessage);
+                _logger.LogWarning(error.ErrorMessage);
             }
 
             return View(personDto);
@@ -128,3 +132,4 @@ namespace PassManagement.Controllers
         }
     }
 }
+

@@ -41,7 +41,6 @@ namespace PassManagement.Models
         [Required]
         public string Product { get; set; }
 
-        [Required]
         public string PhotoPath { get; set; }
     }
 }

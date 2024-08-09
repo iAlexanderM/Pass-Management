@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3HMEDwIhtyBLNytaQqyu5ajV/fN724cFar9EUZSF6XtSx4huLZ/O8nBUHAfQOD5bBeW8IwXzrSes6by9FgNczg==",
+  "dgSpecHash": "hXpuNA0rUAlA9uVDnc1JpgMCrxrWlr524MzLPiVPjok08/+4CktXc7wb7C5Hi1eodDdznsd/MWJNBpT+IQ8lkw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\PassManagement.csproj",
+  "projectFilePath": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\PassManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alexander\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Alexander\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
