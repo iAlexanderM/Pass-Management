@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qh/2u6c9JzSq9BUjqGkjjStBwoh8C8ewAB9FYa8yO1g=",
+  "Hash": "2KC4gtAleJ8miYbFfr9DmIHbIOxhCD0x1SKFPYxI1Yg=",
   "Source": "PassManagement",
   "BasePath": "_content/PassManagement",
   "Mode": "Default",
@@ -129,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\bd114cbd-6eae-4627-bbee-283553fa2b7e.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\images\\de94acd9-fc24-42f3-adb9-3bb1c3e77cab.jpg",
+      "SourceId": "PassManagement",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\",
+      "BasePath": "_content/PassManagement",
+      "RelativePath": "images/de94acd9-fc24-42f3-adb9-3bb1c3e77cab.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\de94acd9-fc24-42f3-adb9-3bb1c3e77cab.jpg"
     },
     {
       "Identity": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\images\\ed85b852-faf6-44ad-9b8f-99be6bca8eb9.jpg",
