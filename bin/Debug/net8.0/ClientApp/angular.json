@@ -11,11 +11,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/client-app",
+            "outputPath": {
+              "base": "dist/client-app"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -27,7 +28,8 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -48,14 +50,10 @@
               "optimization": true,
               "extractLicenses": true,
               "namedChunks": false,
-              "aot": true,
-              "vendorChunk": false,
-              "buildOptimizer": true
+              "aot": true
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -65,21 +63,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ClientApp:build"
+            "buildTarget": "ClientApp:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ClientApp:build:production"
+              "buildTarget": "ClientApp:build:production"
             },
             "development": {
-              "browserTarget": "ClientApp:build:development"
+              "buildTarget": "ClientApp:build:development"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ClientApp:build"
+            "buildTarget": "ClientApp:build"
           }
         },
         "test": {
