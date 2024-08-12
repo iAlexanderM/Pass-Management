@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using PassManagement.Data;
+using Microsoft.Extensions.Logging;
+using PassManagement.Services;
 using PassManagement.Models;
 using System;
 using System.IO;
@@ -9,138 +9,86 @@ using System.Threading.Tasks;
 
 namespace PassManagement.Controllers
 {
-    public class PersonController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class PersonController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly PersonService _personService;
         private readonly ILogger<PersonController> _logger;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public PersonController(ApplicationDbContext context, ILogger<PersonController> logger)
+        public PersonController(PersonService personService, ILogger<PersonController> logger, IWebHostEnvironment hostingEnvironment)
         {
-            _context = context;
+            _personService = personService;
             _logger = logger;
+            _hostingEnvironment = hostingEnvironment;
         }
 
-        // GET: Person/Create
-        public IActionResult Create()
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPerson(int id)
         {
-            return View();
+            var personDto = await _personService.GetPersonDtoByIdAsync(id);
+
+            if (personDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(personDto);
         }
 
-        // POST: Person/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] PersonDto personDto)
         {
             if (personDto.Photo == null || personDto.Photo.Length == 0)
             {
-                ModelState.AddModelError("PhotoPath", "Фото обязательно");
-                return View(personDto);
+                return BadRequest("Фото обязательно");
             }
 
             try
             {
-                // Сохранение фото
-                var photoFileName = Guid.NewGuid().ToString() + Path.GetExtension(personDto.Photo.FileName);
-                var photoPath = Path.Combine("wwwroot", "images", photoFileName);
+                var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(personDto.Photo.FileName);
+                var uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                _logger.LogInformation($"Сохранение файла в {photoPath}");
+                // Ensure the directory exists
+                Directory.CreateDirectory(uploadsFolder);
 
-                using (var stream = new FileStream(photoPath, FileMode.Create))
+                using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await personDto.Photo.CopyToAsync(stream);
                 }
 
-                personDto.PhotoPath = Path.Combine("/images", photoFileName).Replace("\\", "/");
+                personDto.PhotoPath = Path.Combine("/images", uniqueFileName).Replace("\\", "/");
 
-                // Создание и сохранение объекта Person
-                var person = new Person
-                {
-                    LastName = personDto.LastName,
-                    FirstName = personDto.FirstName,
-                    Patronymic = personDto.Patronymic,
-                    Birthdate = personDto.Birthdate,
-                    NumberPhone = personDto.NumberPhone,
-                    DocumentType = personDto.DocumentType,
-                    NumberDocument = personDto.NumberDocument,
-                    DateOfIssue = personDto.DateOfIssue,
-                    WhoIssuedDocument = personDto.WhoIssuedDocument,
-                    Address = personDto.Address,
-                    Product = personDto.Product,
-                    PhotoPath = personDto.PhotoPath
-                };
+                await _personService.AddPersonAsync(personDto);
 
-                _context.Persons.Add(person);
-                _logger.LogInformation("Анкета добавлена в контекст базы данных");
-                await _context.SaveChangesAsync();
-                _logger.LogInformation("Изменения сохранены в базе данных");
-
-                return RedirectToAction("Index", "Person");
+                return CreatedAtAction(nameof(GetPerson), new { id = personDto.Id }, personDto);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Ошибка при сохранении анкеты.");
-                ModelState.AddModelError("", "Произошла ошибка при сохранении данных. Попробуйте снова.");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Произошла ошибка при сохранении данных. Попробуйте снова.");
             }
-
-            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-            {
-                _logger.LogWarning(error.ErrorMessage);
-            }
-
-            return View(personDto);
         }
 
-        // GET: Person/Details/5
-        public async Task<IActionResult> Details(int id)
-        {
-            var person = await _context.Persons
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (person == null)
-            {
-                return NotFound();
-            }
-
-            var personDto = new PersonDto
-            {
-                LastName = person.LastName,
-                FirstName = person.FirstName,
-                Patronymic = person.Patronymic,
-                Birthdate = person.Birthdate,
-                NumberPhone = person.NumberPhone,
-                DocumentType = person.DocumentType,
-                NumberDocument = person.NumberDocument,
-                DateOfIssue = person.DateOfIssue,
-                WhoIssuedDocument = person.WhoIssuedDocument,
-                Address = person.Address,
-                Product = person.Product,
-                PhotoPath = person.PhotoPath
-            };
-
-            return View(personDto);
-        }
-
-        // GET: Person/Delete
-        [HttpPost]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePerson(int id)
         {
-            var person = await _context.Persons.FindAsync(id);
-            if (person == null)
+            var success = await _personService.DeletePersonAsync(id);
+            if (!success)
             {
                 return NotFound();
             }
 
-            _context.Persons.Remove(person);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return NoContent();
         }
 
-        // GET: Person/Index
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> GetPersons()
         {
-            var persons = await _context.Persons.ToListAsync();
-            return View(persons);
+            var persons = await _personService.GetAllPersonsAsync();
+            return Ok(persons);
         }
     }
 }
-

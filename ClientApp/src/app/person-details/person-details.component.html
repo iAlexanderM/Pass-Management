@@ -1,0 +1,25 @@
+<h2>Детали анкеты</h2>
+<div *ngIf="person">
+  <h4>{{ person.lastName }} {{ person.firstName }}</h4>
+  <dl class="row">
+    <dt class="col-sm-2">Фото</dt>
+    <dd class="col-sm-10">
+      <img [src]="person.photoPath" alt="Фото" width="150" />
+    </dd>
+    <dt class="col-sm-2">Дата рождения</dt>
+    <dd class="col-sm-10">{{ person.birthdate | date }}</dd>
+    <dt class="col-sm-2">Телефон</dt>
+    <dd class="col-sm-10">{{ person.numberPhone }}</dd>
+    <dt class="col-sm-2">Документ</dt>
+    <dd class="col-sm-10">{{ person.documentType }}: {{ person.numberDocument }}</dd>
+    <dt class="col-sm-2">Дата выдачи</dt>
+    <dd class="col-sm-10">{{ person.dateOfIssue | date }}</dd>
+    <dt class="col-sm-2">Кем выдан документ</dt>
+    <dd class="col-sm-10">{{ person.whoIssuedDocument }}</dd>
+    <dt class="col-sm-2">Адрес</dt>
+    <dd class="col-sm-10">{{ person.address }}</dd>
+    <dt class="col-sm-2">Продукт</dt>
+    <dd class="col-sm-10">{{ person.product }}</dd>
+  </dl>
+  <a routerLink="/persons" class="btn btn-secondary">Назад к списку</a>
+</div>

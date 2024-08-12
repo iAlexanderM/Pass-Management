@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PassManagement")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f29128fa327728f9150f1d205eaf68352d4cbc1e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8f7e765fc0b8f9cc07d9b5d737bd34dd66a6959")]
 [assembly: System.Reflection.AssemblyProductAttribute("PassManagement")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PassManagement")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

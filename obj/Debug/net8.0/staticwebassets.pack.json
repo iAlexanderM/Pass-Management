@@ -1,14 +1,6 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\PassManagement.bundle.scp.css",
-      "PackagePath": "staticwebassets\\PassManagement.bundle.scp.css"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
-    },
-    {
       "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -211,54 +203,6 @@
     {
       "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery\\LICENSE.txt",
-      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery\\dist\\jquery.js",
-      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
-      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
-    },
-    {
-      "Id": "C:\\Users\\Alexander\\Desktop\\buroP\\PassManagement\\PassManagement\\Pass-Management\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
-      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PassManagement.Microsoft.AspNetCore.StaticWebAssets.props",

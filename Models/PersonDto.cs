@@ -6,6 +6,8 @@ namespace PassManagement.Models
 {
     public class PersonDto
     {
+        public int Id { get; set; }
+
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }
 

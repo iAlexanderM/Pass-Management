@@ -1,0 +1,20 @@
+<h2>Список анкет</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Фамилия</th>
+      <th>Имя</th>
+      <th>Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of persons">
+      <td>{{ person.lastName }}</td>
+      <td>{{ person.firstName }}</td>
+      <td>
+        <a [routerLink]="['/persons', person.id]">Просмотр</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<a routerLink="/persons/create" class="btn btn-primary">Создать новую анкету</a>
