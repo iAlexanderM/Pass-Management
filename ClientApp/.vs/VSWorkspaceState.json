@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\camera-modal",
+    "\\src\\app\\models",
+    "\\src\\app\\person-create",
+    "\\src\\app\\person-details",
+    "\\src\\app\\person-list",
+    "\\src\\assets"
+  ],
+  "SelectedNode": "\\src\\app\\person-details\\person-details.component.html",
+  "PreviewInSolutionExplorer": false
+}
